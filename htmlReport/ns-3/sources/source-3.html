@@ -1,0 +1,204 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SuspiciousCardTransferRestController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bank.antifraud.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: SuspiciousCardTransferRestController (com.bank.antifraud.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SuspiciousCardTransferRestController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bank.antifraud.controller;
+&nbsp;
+&nbsp;import com.bank.antifraud.dto.SuspiciousCardTransferDTO;
+&nbsp;import com.bank.antifraud.service.SuspiciousCardTransferService;
+&nbsp;import io.swagger.v3.oas.annotations.Operation;
+&nbsp;import io.swagger.v3.oas.annotations.media.Content;
+&nbsp;import io.swagger.v3.oas.annotations.media.Schema;
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponse;
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponses;
+&nbsp;import io.swagger.v3.oas.annotations.tags.Tag;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.MediaType;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.validation.annotation.Validated;
+&nbsp;import org.springframework.web.bind.annotation.DeleteMapping;
+&nbsp;import org.springframework.web.bind.annotation.GetMapping;
+&nbsp;import org.springframework.web.bind.annotation.PathVariable;
+&nbsp;import org.springframework.web.bind.annotation.PostMapping;
+&nbsp;import org.springframework.web.bind.annotation.PutMapping;
+&nbsp;import org.springframework.web.bind.annotation.RequestBody;
+&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+&nbsp;import org.springframework.web.bind.annotation.RestController;
+&nbsp;
+&nbsp;import javax.validation.Valid;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/suspiciousCardTransfers&quot;)
+<b class="nc">&nbsp;@RequiredArgsConstructor(onConstructor_ = @Autowired)</b>
+&nbsp;@Validated
+&nbsp;@Tag(name = &quot;Suspicious card transfers&quot;, description = &quot;Methods for handling suspicious card transfers&quot;)
+&nbsp;public class SuspiciousCardTransferRestController {
+&nbsp;
+&nbsp;    private final SuspiciousCardTransferService suspiciousCardTransferService;
+&nbsp;
+&nbsp;    @GetMapping
+&nbsp;    @Operation(summary = &quot;Information about suspicious card transfers&quot;)
+&nbsp;    @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Suspicious card transfers got successfully&quot;,
+&nbsp;            content = {@Content(schema = @Schema(implementation = SuspiciousCardTransferDTO.class),
+&nbsp;                    mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    public ResponseEntity&lt;List&lt;SuspiciousCardTransferDTO&gt;&gt; getAllSuspiciousCardTransfers() {
+<b class="nc">&nbsp;        return ResponseEntity.ok(suspiciousCardTransferService.getAllSuspiciousCardTransfers());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/{id}&quot;)
+&nbsp;    @Operation(summary = &quot;Information about suspicious card transfer by ID&quot;)
+&nbsp;    @ApiResponses(value = {
+&nbsp;            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Suspicious card transfer got successfully&quot;,
+&nbsp;                    content = {@Content(schema = @Schema(implementation = SuspiciousCardTransferDTO.class),
+&nbsp;                            mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Incorrect request&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Suspicious card transfer not found&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    })
+&nbsp;    public ResponseEntity&lt;SuspiciousCardTransferDTO&gt; getSuspiciousCardTransferById(@Valid @PathVariable(&quot;id&quot;) Long id) {
+<b class="nc">&nbsp;        return ResponseEntity.ok(suspiciousCardTransferService.getSuspiciousCardTransferById(id));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PostMapping
+&nbsp;    @Operation(summary = &quot;Add new suspicious card transfer&quot;)
+&nbsp;    @ApiResponse(responseCode = &quot;201&quot;, description = &quot;Entity \&quot;SuspiciousCardTransfer\&quot; created successfully&quot;,
+&nbsp;            content = {@Content(schema = @Schema(implementation = SuspiciousCardTransferDTO.class),
+&nbsp;                    mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    public ResponseEntity&lt;SuspiciousCardTransferDTO&gt; addSuspiciousCardTransfer(
+&nbsp;            @Valid @RequestBody SuspiciousCardTransferDTO suspiciousCardTransferDTO) {
+<b class="nc">&nbsp;        return ResponseEntity.ok(suspiciousCardTransferService.addSuspiciousCardTransfer(suspiciousCardTransferDTO));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PutMapping
+&nbsp;    @Operation(summary = &quot;Update data suspicious card transfer&quot;)
+&nbsp;    @ApiResponses(value = {
+&nbsp;            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Suspicious card transfer updated successfully&quot;,
+&nbsp;                    content = {@Content(schema = @Schema(implementation = SuspiciousCardTransferDTO.class),
+&nbsp;                            mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Suspicious card transfer not found&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    })
+&nbsp;    public ResponseEntity&lt;SuspiciousCardTransferDTO&gt; updateSuspiciousCardTransfer(
+&nbsp;            @Valid @RequestBody SuspiciousCardTransferDTO suspiciousCardTransferDTO) {
+<b class="nc">&nbsp;        return ResponseEntity.ok(suspiciousCardTransferService.updateSuspiciousCardTransfer(suspiciousCardTransferDTO));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @DeleteMapping(&quot;/{id}&quot;)
+&nbsp;    @Operation(summary = &quot;Delete suspicious card transfer by ID&quot;)
+&nbsp;    @ApiResponses(value = {
+&nbsp;            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Suspicious card transfer deleted successfully&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Incorrect request&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Suspicious card transfer not found&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    })
+&nbsp;    public ResponseEntity&lt;String&gt; removeSuspiciousCardTransfer(@Valid @PathVariable(&quot;id&quot;) Long id) {
+<b class="nc">&nbsp;        suspiciousCardTransferService.deleteSuspiciousCardTransferById(id);</b>
+&nbsp;
+<b class="nc">&nbsp;        return ResponseEntity.ok(String.format(&quot;SuspiciousCardTransfer with ID = %d was delete!&quot;, id));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 21:15</div>
+</div>
+</body>
+</html>

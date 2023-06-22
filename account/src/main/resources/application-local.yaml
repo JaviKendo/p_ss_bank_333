@@ -1,0 +1,43 @@
+server:
+  port: 8085
+  servlet:
+    context-path: /api/account
+management:
+  server:
+    port: 8185
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+management.endpoints.web.exposure.include: prometheus
+ management.endpoints.web.base-path: /actuator
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/postgres?currentSchema=account
+    username: postgres
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        envers:
+          audit_table_prefix: audit_
+          store_data_at_delete: true
+  liquibase:
+    default-schema: account
+    change-log: db.changelog/db.changelog-master.yaml
+    enabled: ${LIQUIBASE_ENABLED:true}
+    drop-first: ${LIQUIBASE_DROP_FIRST:false}
+  application:
+    name: account-app
+eureka:
+  client:
+    service-url:
+      defaultZone=http://localhost:8761/eureka/:

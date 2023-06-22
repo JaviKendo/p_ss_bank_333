@@ -1,0 +1,146 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SuspiciousTransferTypeCheckerImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bank.antifraud.util</a>
+</div>
+
+<h1>Coverage Summary for Class: SuspiciousTransferTypeCheckerImpl (com.bank.antifraud.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SuspiciousTransferTypeCheckerImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bank.antifraud.util;
+&nbsp;import com.bank.antifraud.custom_audit.ObservableEntity;
+&nbsp;import com.bank.antifraud.dto.SuspiciousAccountTransferDTO;
+&nbsp;import com.bank.antifraud.dto.SuspiciousCardTransferDTO;
+&nbsp;import com.bank.antifraud.dto.SuspiciousPhoneTransferDTO;
+&nbsp;import com.bank.antifraud.mapper.SuspiciousAccountTransferMapper;
+&nbsp;import com.bank.antifraud.mapper.SuspiciousCardTransferMapper;
+&nbsp;import com.bank.antifraud.mapper.SuspiciousPhoneTransferMapper;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.lang.Nullable;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;
+&nbsp;@Component
+<b class="nc">&nbsp;@RequiredArgsConstructor(onConstructor_ = @Autowired)</b>
+&nbsp;public class SuspiciousTransferTypeCheckerImpl implements SuspiciousTransferTypeChecker {
+&nbsp;
+&nbsp;    private final SuspiciousAccountTransferMapper suspiciousAccountTransferMapper;
+&nbsp;    private final SuspiciousCardTransferMapper suspiciousCardTransferMapper;
+&nbsp;    private final SuspiciousPhoneTransferMapper suspiciousPhoneTransferMapper;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    @Nullable
+&nbsp;    public &lt;T&gt; ObservableEntity checkAndConvertEntityType(T objectForConvertToEntity, Class&lt;?&gt; uncheckedType) {
+<b class="nc">&nbsp;        ObservableEntity checkedType = null;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (uncheckedType == SuspiciousAccountTransferDTO.class) {</b>
+<b class="nc">&nbsp;            checkedType = suspiciousAccountTransferMapper</b>
+<b class="nc">&nbsp;                    .toEntity((SuspiciousAccountTransferDTO) objectForConvertToEntity);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (uncheckedType == SuspiciousCardTransferDTO.class) {</b>
+<b class="nc">&nbsp;            checkedType = suspiciousCardTransferMapper</b>
+<b class="nc">&nbsp;                    .toEntity((SuspiciousCardTransferDTO) objectForConvertToEntity);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (uncheckedType == SuspiciousPhoneTransferDTO.class) {</b>
+<b class="nc">&nbsp;            checkedType = suspiciousPhoneTransferMapper</b>
+<b class="nc">&nbsp;                    .toEntity((SuspiciousPhoneTransferDTO) objectForConvertToEntity);</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return checkedType;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 21:15</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AuditRestController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bank.antifraud.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: AuditRestController (com.bank.antifraud.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AuditRestController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bank.antifraud.controller;
+&nbsp;
+&nbsp;import com.bank.antifraud.dto.AuditDTO;
+&nbsp;import com.bank.antifraud.service.AuditService;
+&nbsp;import io.swagger.v3.oas.annotations.Operation;
+&nbsp;import io.swagger.v3.oas.annotations.media.Content;
+&nbsp;import io.swagger.v3.oas.annotations.media.Schema;
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponse;
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponses;
+&nbsp;import io.swagger.v3.oas.annotations.tags.Tag;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.MediaType;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.validation.annotation.Validated;
+&nbsp;import org.springframework.web.bind.annotation.GetMapping;
+&nbsp;import org.springframework.web.bind.annotation.PathVariable;
+&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+&nbsp;import org.springframework.web.bind.annotation.RestController;
+&nbsp;
+&nbsp;import javax.validation.Valid;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/audits&quot;)
+<b class="nc">&nbsp;@RequiredArgsConstructor(onConstructor_ = @Autowired)</b>
+&nbsp;@Validated
+&nbsp;@Tag(name = &quot;Audits&quot;, description = &quot;Methods for viewing audits&quot;)
+&nbsp;public class AuditRestController {
+&nbsp;
+&nbsp;    private final AuditService auditService;
+&nbsp;
+&nbsp;    @GetMapping
+&nbsp;    @Operation(summary = &quot;Information about all audits&quot;)
+&nbsp;    @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Audits got successfully&quot;,
+&nbsp;            content = {@Content(schema = @Schema(implementation = AuditDTO.class),
+&nbsp;                    mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    public ResponseEntity&lt;List&lt;AuditDTO&gt;&gt; getAllAudits() {
+<b class="nc">&nbsp;        return ResponseEntity.ok(auditService.getAllAudits());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/{id}&quot;)
+&nbsp;    @Operation(summary = &quot;Information about audit by ID&quot;)
+&nbsp;    @ApiResponses(value = {
+&nbsp;            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Audit got successfully&quot;,
+&nbsp;                    content = {@Content(schema = @Schema(implementation = AuditDTO.class),
+&nbsp;                            mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Incorrect request&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Audit not found&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    })
+&nbsp;    public ResponseEntity&lt;AuditDTO&gt; getAuditById(@Valid @PathVariable(&quot;id&quot;) Long id) {
+<b class="nc">&nbsp;        return ResponseEntity.ok(auditService.getAuditById(id));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 21:15</div>
+</div>
+</body>
+</html>

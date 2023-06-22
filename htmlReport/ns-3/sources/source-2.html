@@ -1,0 +1,230 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SuspiciousAccountTransferRestController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bank.antifraud.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: SuspiciousAccountTransferRestController (com.bank.antifraud.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SuspiciousAccountTransferRestController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/26)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bank.antifraud.controller;
+&nbsp;
+&nbsp;import com.bank.antifraud.dto.SuspiciousAccountTransferDTO;
+&nbsp;import com.bank.antifraud.service.SuspiciousAccountTransferService;
+&nbsp;import io.swagger.v3.oas.annotations.Operation;
+&nbsp;import io.swagger.v3.oas.annotations.media.Content;
+&nbsp;import io.swagger.v3.oas.annotations.media.Schema;
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponse;
+&nbsp;import io.swagger.v3.oas.annotations.responses.ApiResponses;
+&nbsp;import io.swagger.v3.oas.annotations.tags.Tag;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import lombok.extern.slf4j.Slf4j;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.MediaType;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.validation.annotation.Validated;
+&nbsp;import org.springframework.web.bind.annotation.DeleteMapping;
+&nbsp;import org.springframework.web.bind.annotation.GetMapping;
+&nbsp;import org.springframework.web.bind.annotation.PathVariable;
+&nbsp;import org.springframework.web.bind.annotation.PostMapping;
+&nbsp;import org.springframework.web.bind.annotation.PutMapping;
+&nbsp;import org.springframework.web.bind.annotation.RequestBody;
+&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+&nbsp;import org.springframework.web.bind.annotation.RestController;
+&nbsp;
+&nbsp;import javax.validation.Valid;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/suspiciousAccountTransfers&quot;)
+<b class="nc">&nbsp;@RequiredArgsConstructor(onConstructor_ = @Autowired)</b>
+<b class="nc">&nbsp;@Slf4j</b>
+&nbsp;@Validated
+&nbsp;@Tag(name = &quot;Suspicious account transfers&quot;, description = &quot;Methods for handling suspicious account transfers&quot;)
+&nbsp;public class SuspiciousAccountTransferRestController {
+&nbsp;
+&nbsp;    private final SuspiciousAccountTransferService suspiciousAccountTransferService;
+&nbsp;
+&nbsp;    @GetMapping
+&nbsp;    @Operation(summary = &quot;Information about suspicious account transfers&quot;)
+&nbsp;    @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Suspicious account transfers got successfully&quot;,
+&nbsp;            content = {@Content(schema = @Schema(implementation = SuspiciousAccountTransferDTO.class),
+&nbsp;                    mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    public ResponseEntity&lt;List&lt;SuspiciousAccountTransferDTO&gt;&gt; getAllSuspiciousAccountTransfers() {
+<b class="nc">&nbsp;        log.info(&quot;Request received to get all suspicious transfers by account number&quot;);</b>
+<b class="nc">&nbsp;        List&lt;SuspiciousAccountTransferDTO&gt; transfers =</b>
+<b class="nc">&nbsp;                suspiciousAccountTransferService.getAllSuspiciousAccountTransfers();</b>
+<b class="nc">&nbsp;        log.info(&quot;Returning {} suspicious transfers by account number.&quot;, transfers.size());</b>
+&nbsp;
+<b class="nc">&nbsp;        return ResponseEntity.ok(transfers);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/{id}&quot;)
+&nbsp;    @Operation(summary = &quot;Information about suspicious account transfer by ID&quot;)
+&nbsp;    @ApiResponses(value = {
+&nbsp;            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Suspicious account transfer got successfully&quot;,
+&nbsp;                    content = {@Content(schema = @Schema(implementation = SuspiciousAccountTransferDTO.class),
+&nbsp;                            mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Incorrect request&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Suspicious account transfer not found&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    })
+&nbsp;    public ResponseEntity&lt;SuspiciousAccountTransferDTO&gt; getSuspiciousAccountTransferById(
+&nbsp;            @Valid @PathVariable(&quot;id&quot;) Long id) {
+<b class="nc">&nbsp;        log.info(&quot;Request received to get by id suspicious transfers by account number&quot;);</b>
+<b class="nc">&nbsp;        SuspiciousAccountTransferDTO transfer = suspiciousAccountTransferService.getSuspiciousAccountTransferById(id);</b>
+<b class="nc">&nbsp;        log.info(&quot;The SuspiciousAccountTransferDTO has gotten successfully with ID = {}&quot;, id);</b>
+&nbsp;
+<b class="nc">&nbsp;        return ResponseEntity.ok(transfer);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PostMapping
+&nbsp;    @Operation(summary = &quot;Add new suspicious account transfer&quot;)
+&nbsp;    @ApiResponse(responseCode = &quot;201&quot;, description = &quot;Entity \&quot;SuspiciousAccountTransfer\&quot; created successfully&quot;,
+&nbsp;            content = {@Content(schema = @Schema(implementation = SuspiciousAccountTransferDTO.class),
+&nbsp;                    mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    public ResponseEntity&lt;SuspiciousAccountTransferDTO&gt; addSuspiciousAccountTransfer(
+&nbsp;            @Valid @RequestBody SuspiciousAccountTransferDTO suspiciousAccountTransferDTO) {
+<b class="nc">&nbsp;        log.info(&quot;Request received to create a new entity: SuspiciousAccountTransfer&quot;);</b>
+<b class="nc">&nbsp;        SuspiciousAccountTransferDTO createdSuspiciousAccountTransferDTO =</b>
+<b class="nc">&nbsp;                suspiciousAccountTransferService.addSuspiciousAccountTransfer(suspiciousAccountTransferDTO);</b>
+<b class="nc">&nbsp;        log.info(&quot;Entity \&quot;SuspiciousAccountTransfer\&quot; created successfully with ID = {}&quot;,</b>
+<b class="nc">&nbsp;                createdSuspiciousAccountTransferDTO.getId());</b>
+&nbsp;
+<b class="nc">&nbsp;        return ResponseEntity.status(HttpStatus.CREATED).body(createdSuspiciousAccountTransferDTO);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PutMapping
+&nbsp;    @Operation(summary = &quot;Update data suspicious account transfer&quot;)
+&nbsp;    @ApiResponses(value = {
+&nbsp;            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Suspicious account transfer updated successfully&quot;,
+&nbsp;                    content = {@Content(schema = @Schema(implementation = SuspiciousAccountTransferDTO.class),
+&nbsp;                            mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Suspicious account transfer not found&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    })
+&nbsp;    public ResponseEntity&lt;SuspiciousAccountTransferDTO&gt; updateSuspiciousAccountTransfer(
+&nbsp;            @Valid @RequestBody SuspiciousAccountTransferDTO suspiciousAccountTransferDTO) {
+<b class="nc">&nbsp;        log.info(&quot;Request received to create a new entity: SuspiciousAccountTransfer&quot;);</b>
+<b class="nc">&nbsp;        SuspiciousAccountTransferDTO transfer =</b>
+<b class="nc">&nbsp;                suspiciousAccountTransferService.updateSuspiciousAccountTransfer(suspiciousAccountTransferDTO);</b>
+<b class="nc">&nbsp;        log.info(&quot;Entity \&quot;SuspiciousAccountTransfer\&quot; updated successfully with ID = {}&quot;, transfer.getId());</b>
+&nbsp;
+<b class="nc">&nbsp;        return ResponseEntity.ok(transfer);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @DeleteMapping(&quot;/{id}&quot;)
+&nbsp;    @Operation(summary = &quot;Delete suspicious account transfer by ID&quot;)
+&nbsp;    @ApiResponses(value = {
+&nbsp;            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Suspicious account transfer deleted successfully&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Incorrect request&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+&nbsp;            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Suspicious account transfer not found&quot;,
+&nbsp;                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+&nbsp;    })
+&nbsp;    public ResponseEntity&lt;String&gt; removeSuspiciousAccountTransfer(@Valid @PathVariable(&quot;id&quot;) Long id) {
+<b class="nc">&nbsp;        log.info(&quot;Request received to create a new entity: SuspiciousAccountTransfer&quot;);</b>
+<b class="nc">&nbsp;        suspiciousAccountTransferService.deleteSuspiciousAccountTransferById(id);</b>
+<b class="nc">&nbsp;        log.info(&quot;Entity \&quot;SuspiciousAccountTransfer\&quot; deleted successfully with ID = {}&quot;, id);</b>
+&nbsp;
+<b class="nc">&nbsp;        return ResponseEntity.ok(String.format(&quot;SuspiciousAccountTransfer with ID = %d was delete!&quot;, id));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 21:15</div>
+</div>
+</body>
+</html>

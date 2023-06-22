@@ -1,0 +1,15 @@
+# Используйте официальный образ Java как базовый
+FROM openjdk:17-jdk-slim
+
+# Укажите рабочую директорию внутри контейнера
+WORKDIR /app
+
+# Копируйте исполняемый JAR-файл вашего приложения в рабочую директорию контейнера
+COPY target/authorization-0.0.1-SNAPSHOT.jar /app
+
+ARG JAR_FILE=target/authorization-0.0.1-SNAPSHOT.jar
+# Укажите порт, на котором ваше приложение будет слушать входящие соединения
+EXPOSE 8087
+EXPOSE 8187
+# Запустите ваше приложение в контейнере
+ENTRYPOINT ["java", "-jar", "/app/authorization-0.0.1-SNAPSHOT.jar"]

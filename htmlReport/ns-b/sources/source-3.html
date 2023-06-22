@@ -1,0 +1,170 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SuspiciousCardTransferMapperImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bank.antifraud.mapper</a>
+</div>
+
+<h1>Coverage Summary for Class: SuspiciousCardTransferMapperImpl (com.bank.antifraud.mapper)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SuspiciousCardTransferMapperImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/28)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bank.antifraud.mapper;
+&nbsp;
+&nbsp;import com.bank.antifraud.dto.SuspiciousCardTransferDTO;
+&nbsp;import com.bank.antifraud.entity.transfer.SuspiciousCardTransfer;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import javax.annotation.processing.Generated;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;
+&nbsp;@Generated(
+&nbsp;    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+&nbsp;    date = &quot;2023-06-19T15:47:46+0500&quot;,
+&nbsp;    comments = &quot;version: 1.5.3.Final, compiler: javac, environment: Java 17.0.2 (Microsoft)&quot;
+&nbsp;)
+&nbsp;@Component
+<b class="nc">&nbsp;public class SuspiciousCardTransferMapperImpl implements SuspiciousCardTransferMapper {</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public SuspiciousCardTransferDTO toDTO(SuspiciousCardTransfer suspiciousCardTransfer) {
+<b class="nc">&nbsp;        if ( suspiciousCardTransfer == null ) {</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        SuspiciousCardTransferDTO suspiciousCardTransferDTO = new SuspiciousCardTransferDTO();</b>
+&nbsp;
+<b class="nc">&nbsp;        suspiciousCardTransferDTO.setId( suspiciousCardTransfer.getId() );</b>
+<b class="nc">&nbsp;        suspiciousCardTransferDTO.setCardTransferId( suspiciousCardTransfer.getCardTransferId() );</b>
+<b class="nc">&nbsp;        suspiciousCardTransferDTO.setIsBlocked( suspiciousCardTransfer.getIsBlocked() );</b>
+<b class="nc">&nbsp;        suspiciousCardTransferDTO.setIsSuspicious( suspiciousCardTransfer.getIsSuspicious() );</b>
+<b class="nc">&nbsp;        suspiciousCardTransferDTO.setBlockedReason( suspiciousCardTransfer.getBlockedReason() );</b>
+<b class="nc">&nbsp;        suspiciousCardTransferDTO.setSuspiciousReason( suspiciousCardTransfer.getSuspiciousReason() );</b>
+&nbsp;
+<b class="nc">&nbsp;        return suspiciousCardTransferDTO;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public SuspiciousCardTransfer toEntity(SuspiciousCardTransferDTO suspiciousCardTransferDTO) {
+<b class="nc">&nbsp;        if ( suspiciousCardTransferDTO == null ) {</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        SuspiciousCardTransfer suspiciousCardTransfer = new SuspiciousCardTransfer();</b>
+&nbsp;
+<b class="nc">&nbsp;        suspiciousCardTransfer.setId( suspiciousCardTransferDTO.getId() );</b>
+<b class="nc">&nbsp;        suspiciousCardTransfer.setCardTransferId( suspiciousCardTransferDTO.getCardTransferId() );</b>
+<b class="nc">&nbsp;        suspiciousCardTransfer.setIsBlocked( suspiciousCardTransferDTO.getIsBlocked() );</b>
+<b class="nc">&nbsp;        suspiciousCardTransfer.setIsSuspicious( suspiciousCardTransferDTO.getIsSuspicious() );</b>
+<b class="nc">&nbsp;        suspiciousCardTransfer.setBlockedReason( suspiciousCardTransferDTO.getBlockedReason() );</b>
+<b class="nc">&nbsp;        suspiciousCardTransfer.setSuspiciousReason( suspiciousCardTransferDTO.getSuspiciousReason() );</b>
+&nbsp;
+<b class="nc">&nbsp;        return suspiciousCardTransfer;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;SuspiciousCardTransferDTO&gt; toDTOList(List&lt;SuspiciousCardTransfer&gt; suspiciousCardTransferList) {
+<b class="nc">&nbsp;        if ( suspiciousCardTransferList == null ) {</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        List&lt;SuspiciousCardTransferDTO&gt; list = new ArrayList&lt;SuspiciousCardTransferDTO&gt;( suspiciousCardTransferList.size() );</b>
+<b class="nc">&nbsp;        for ( SuspiciousCardTransfer suspiciousCardTransfer : suspiciousCardTransferList ) {</b>
+<b class="nc">&nbsp;            list.add( toDTO( suspiciousCardTransfer ) );</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        return list;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 21:15</div>
+</div>
+</body>
+</html>

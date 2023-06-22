@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: anti-fraud-app
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:postgresql://localhost:5433/postgres?currentSchema=anti_fraud
+  liquibase:
+    enabled: true
+
+  # Hibernate properties
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        hbm2ddl.auto: validate
+        default_schema: anti_fraud
+
+eureka:
+  server:
+    enable-self-preservation: false
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    enabled: true
+  instance:
+    preferIpAddress: true
+    lease-renewal-interval-in-seconds: 30

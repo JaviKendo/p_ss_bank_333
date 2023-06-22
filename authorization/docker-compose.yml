@@ -1,0 +1,42 @@
+services:
+
+  bank-db:
+    image: postgres
+    hostname: bank-db
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - my_network
+  java_app:
+    build:
+      context: .
+    ports:
+      - "8087:8087"
+      - "8187:8187"
+    networks:
+      - my_network
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./src/main/resources/prometheus.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - my_network
+
+  grafana:
+    image: grafana/grafana:8.3.3
+    ports:
+      - "3000:3000"
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge

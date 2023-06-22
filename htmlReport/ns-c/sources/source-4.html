@@ -1,0 +1,167 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SuspiciousPhoneTransferServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bank.antifraud.service</a>
+</div>
+
+<h1>Coverage Summary for Class: SuspiciousPhoneTransferServiceImpl (com.bank.antifraud.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SuspiciousPhoneTransferServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bank.antifraud.service;
+&nbsp;
+&nbsp;import com.bank.antifraud.custom_audit.Auditable;
+&nbsp;import com.bank.antifraud.custom_audit.AuditingActionType;
+&nbsp;import com.bank.antifraud.dto.SuspiciousPhoneTransferDTO;
+&nbsp;import com.bank.antifraud.exception_handling.exception.NoSuchTransferException;
+&nbsp;import com.bank.antifraud.mapper.SuspiciousPhoneTransferMapper;
+&nbsp;import com.bank.antifraud.repository.SuspiciousPhoneTransferRepository;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import org.springframework.transaction.annotation.Transactional;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+<b class="nc">&nbsp;@RequiredArgsConstructor(onConstructor_ = @Autowired)</b>
+&nbsp;public class SuspiciousPhoneTransferServiceImpl implements SuspiciousPhoneTransferService {
+&nbsp;
+&nbsp;    private final SuspiciousPhoneTransferRepository suspiciousPhoneTransferRepository;
+&nbsp;    private final SuspiciousPhoneTransferMapper suspiciousPhoneTransferMapper;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;SuspiciousPhoneTransferDTO&gt; getAllSuspiciousPhoneTransfers() {
+<b class="nc">&nbsp;        return suspiciousPhoneTransferMapper.toDTOList(suspiciousPhoneTransferRepository.findAll());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public SuspiciousPhoneTransferDTO getSuspiciousPhoneTransferById(Long id) {
+<b class="nc">&nbsp;        return suspiciousPhoneTransferMapper.toDTO(suspiciousPhoneTransferRepository.findById(id)</b>
+<b class="nc">&nbsp;                .orElseThrow(() -&gt; new NoSuchTransferException(</b>
+<b class="nc">&nbsp;                        String.format(&quot;SuspiciousPhoneTransfer not found with ID = %d&quot;, id))));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    @Transactional
+&nbsp;    @Auditable(actionType = AuditingActionType.ADD)
+&nbsp;    public SuspiciousPhoneTransferDTO addSuspiciousPhoneTransfer(
+&nbsp;            SuspiciousPhoneTransferDTO suspiciousPhoneTransferDTO) {
+<b class="nc">&nbsp;        return suspiciousPhoneTransferMapper.toDTO(suspiciousPhoneTransferRepository</b>
+<b class="nc">&nbsp;                .save(suspiciousPhoneTransferMapper.toEntity(suspiciousPhoneTransferDTO)));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    @Transactional
+&nbsp;    @Auditable(actionType = AuditingActionType.UPDATE)
+&nbsp;    public SuspiciousPhoneTransferDTO updateSuspiciousPhoneTransfer(
+&nbsp;            SuspiciousPhoneTransferDTO updatedSuspiciousPhoneTransferDTO) {
+<b class="nc">&nbsp;        this.getSuspiciousPhoneTransferById(updatedSuspiciousPhoneTransferDTO.getId());</b>
+<b class="nc">&nbsp;        return suspiciousPhoneTransferMapper.toDTO(suspiciousPhoneTransferRepository</b>
+<b class="nc">&nbsp;                .save(suspiciousPhoneTransferMapper.toEntity(updatedSuspiciousPhoneTransferDTO)));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    @Transactional
+&nbsp;    @Auditable(actionType = AuditingActionType.DELETE)
+&nbsp;    public SuspiciousPhoneTransferDTO deleteSuspiciousPhoneTransferById(Long id) {
+<b class="nc">&nbsp;        SuspiciousPhoneTransferDTO suspiciousPhoneTransferDTO = this.getSuspiciousPhoneTransferById(id);</b>
+<b class="nc">&nbsp;        suspiciousPhoneTransferRepository.deleteById(id);</b>
+&nbsp;
+<b class="nc">&nbsp;        return suspiciousPhoneTransferDTO;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 21:15</div>
+</div>
+</body>
+</html>

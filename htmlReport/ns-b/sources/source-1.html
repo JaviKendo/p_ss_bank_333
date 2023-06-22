@@ -1,0 +1,176 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AuditMapperImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bank.antifraud.mapper</a>
+</div>
+
+<h1>Coverage Summary for Class: AuditMapperImpl (com.bank.antifraud.mapper)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AuditMapperImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/34)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bank.antifraud.mapper;
+&nbsp;
+&nbsp;import com.bank.antifraud.dto.AuditDTO;
+&nbsp;import com.bank.antifraud.entity.Audit;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import javax.annotation.processing.Generated;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;
+&nbsp;@Generated(
+&nbsp;    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+&nbsp;    date = &quot;2023-06-18T15:14:04+0500&quot;,
+&nbsp;    comments = &quot;version: 1.5.3.Final, compiler: javac, environment: Java 17.0.2 (Microsoft)&quot;
+&nbsp;)
+&nbsp;@Component
+<b class="nc">&nbsp;public class AuditMapperImpl implements AuditMapper {</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public AuditDTO toDTO(Audit audit) {
+<b class="nc">&nbsp;        if ( audit == null ) {</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        AuditDTO auditDTO = new AuditDTO();</b>
+&nbsp;
+<b class="nc">&nbsp;        auditDTO.setId( audit.getId() );</b>
+<b class="nc">&nbsp;        auditDTO.setEntityType( audit.getEntityType() );</b>
+<b class="nc">&nbsp;        auditDTO.setOperationType( audit.getOperationType() );</b>
+<b class="nc">&nbsp;        auditDTO.setCreatedBy( audit.getCreatedBy() );</b>
+<b class="nc">&nbsp;        auditDTO.setModifiedBy( audit.getModifiedBy() );</b>
+<b class="nc">&nbsp;        auditDTO.setCreatedAt( audit.getCreatedAt() );</b>
+<b class="nc">&nbsp;        auditDTO.setModifiedAt( audit.getModifiedAt() );</b>
+<b class="nc">&nbsp;        auditDTO.setNewEntityJson( audit.getNewEntityJson() );</b>
+<b class="nc">&nbsp;        auditDTO.setEntityJson( audit.getEntityJson() );</b>
+&nbsp;
+<b class="nc">&nbsp;        return auditDTO;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Audit toEntity(AuditDTO auditDTO) {
+<b class="nc">&nbsp;        if ( auditDTO == null ) {</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        Audit audit = new Audit();</b>
+&nbsp;
+<b class="nc">&nbsp;        audit.setId( auditDTO.getId() );</b>
+<b class="nc">&nbsp;        audit.setEntityType( auditDTO.getEntityType() );</b>
+<b class="nc">&nbsp;        audit.setOperationType( auditDTO.getOperationType() );</b>
+<b class="nc">&nbsp;        audit.setCreatedBy( auditDTO.getCreatedBy() );</b>
+<b class="nc">&nbsp;        audit.setModifiedBy( auditDTO.getModifiedBy() );</b>
+<b class="nc">&nbsp;        audit.setCreatedAt( auditDTO.getCreatedAt() );</b>
+<b class="nc">&nbsp;        audit.setModifiedAt( auditDTO.getModifiedAt() );</b>
+<b class="nc">&nbsp;        audit.setNewEntityJson( auditDTO.getNewEntityJson() );</b>
+<b class="nc">&nbsp;        audit.setEntityJson( auditDTO.getEntityJson() );</b>
+&nbsp;
+<b class="nc">&nbsp;        return audit;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;AuditDTO&gt; toDTOList(List&lt;Audit&gt; audit) {
+<b class="nc">&nbsp;        if ( audit == null ) {</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        List&lt;AuditDTO&gt; list = new ArrayList&lt;AuditDTO&gt;( audit.size() );</b>
+<b class="nc">&nbsp;        for ( Audit audit1 : audit ) {</b>
+<b class="nc">&nbsp;            list.add( toDTO( audit1 ) );</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        return list;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 21:15</div>
+</div>
+</body>
+</html>
